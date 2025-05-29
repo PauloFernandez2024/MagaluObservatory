@@ -1,7 +1,7 @@
 # MagaluObservatory
 Programas e Regras de Observabilidade para Magalu Cloud
 
-
+![arquitetura](magalucloud.png)
 
 
 ## 1. Métricas de Rede (Load, Errors, Buffers, Environment)
