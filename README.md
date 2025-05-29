@@ -9,6 +9,10 @@ Programas e Regras de Observabilidade para Magalu Cloud
 
 ## Rules Engine
 
+<p align="center">
+    <img src="rules_engine.png" alt="Diagrama da Arquitetura" width="300"/>
+</p>
+<br>
 
 
 ## 1. Métricas de Rede (Load, Errors, Buffers, Environment)
