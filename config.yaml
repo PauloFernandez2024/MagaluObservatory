@@ -1,0 +1,25 @@
+thresholds:
+  processor:
+    warning: 70
+    critical: 90
+  storage:
+    warning: 80
+    critical: 90
+  bandwidth:
+    warning: 70
+    critical: 90
+  temperature:
+    warning: 75
+    critical: 85
+  indiscards:
+    warning: 1
+    critical: 5
+  outdiscards:
+    warning: 1
+    critical: 5
+  inerrors:
+    warning: 1
+    critical: 5
+  outerrors:
+    warning: 1
+    critical: 5

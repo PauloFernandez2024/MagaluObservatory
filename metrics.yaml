@@ -1,0 +1,26 @@
+processor:
+  - hrProcessorLoad
+storage:
+  - hrStorageSize
+  - hrStorageUsed
+  - hrStorageDescr
+temperature:
+  - lmTempSensorsValue
+bandwidth:
+  - ifHCInOctets
+  - ifHCOutOctets
+  - ifHighSpeed
+indiscards:
+  - ifHCInBroadcastPkts
+  - ifHCInMulticastPkts
+  - ifHCInUcastPkts
+  - ifInDiscards
+outdiscards:
+  - ifHCOutBroadcastPkts
+  - ifHCOutMulticastPkts
+  - ifHCOutUcastPkts
+  - ifOutDiscards
+inerrors:
+  - ifInErrors
+outerrors:
+  - ifOutErrors
