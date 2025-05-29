@@ -10,7 +10,7 @@ Programas e Regras de Observabilidade para Magalu Cloud
 ## Rules Engine
 
 <p align="center">
-    <img src="rules_engine.png" alt="Diagrama da Arquitetura" width="300"/>
+    <img src="rules_engine.png" alt="Diagrama da Arquitetura" width="400"/>
 </p>
 <br>
 
