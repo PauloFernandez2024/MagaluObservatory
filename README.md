@@ -1,10 +1,15 @@
-# MagaluObservatory
+# Magalu Observatory
 Programas e Regras de Observabilidade para Magalu Cloud
 
 <p align="center">
     <img src="magalucloud.png" alt="Diagrama da Arquitetura" width="700"/>
 </p>
 <br>
+
+
+## Rules Engine
+
+
 
 ## 1. Métricas de Rede (Load, Errors, Buffers, Environment)
 
@@ -25,7 +30,7 @@ Estas métricas indicam o volume e o tipo de dados que os equipamentos de rede e
 
 <br>
 
-## Métricas BGP
+## 2. Métricas BGP
 
 Contempla as principais métricas que devem ser monitoradas em sessões BGP para garantir visibilidade, estabilidade e operação segura de redes com roteamento dinâmico.
 
@@ -45,7 +50,7 @@ Contempla as principais métricas que devem ser monitoradas em sessões BGP para
 
 <br>
 
-## Métricas de Servidores
+## 3. Métricas de Servidores
 
 Obtém um conjunto essencial de métricas para monitorar servidores físicos ou virtuais. O acompanhamento contínuo dessas métricas é fundamental para garantir a **disponibilidade**, **desempenho** e **segurança** da infraestrutura.
 
@@ -68,6 +73,29 @@ Obtém um conjunto essencial de métricas para monitorar servidores físicos ou 
 | `service availability`        | Disponibilidade de serviços essenciais (via ping, TCP, HTTP, etc.).         |
 
 
+<br>
+
+## 4. Métricas de Firewalls
+
+Como principais métricas para monitoramento de **firewalls físicos ou virtuais**, essenciais para garantir **segurança**, **desempenho de rede** e **conformidade** com políticas de acesso, detacam-se:
+
+
+ **Métrica**                           | **Descrição**                                                                 |
+|----------------------------------------|-------------------------------------------------------------------------------|
+| `cpu_usage`                            | Utilização da CPU — alta carga pode causar latência em inspeções.            |
+| `memory_usage`                         | Utilização da RAM — fundamental para análise de pacotes e sessões ativas.    |
+| `active_connections`                   | Total de conexões ativas no momento.                                         |
+| `new_connections_rate`                 | Taxa de criação de novas conexões por segundo.                               |
+| `dropped_packets`                      | Pacotes descartados por regras, limite ou erro.                              |
+| `blocked_connections`                  | Conexões explicitamente bloqueadas pelas regras de firewall.                 |
+| `accepted_connections`                 | Conexões aceitas (permitidas pelas regras).                                  |
+| `interface_errors`                     | Erros nas interfaces de rede (CRC, overrun, etc.).                           |
+| `intrusion_attempts_detected`          | Detecções de ataques por IPS (se suportado).                                 |
+| `vpn_active_sessions`                  | Número de sessões VPN ativas (SSL/IPSec).                                    |
+| `session_table_utilization`            | Percentual de uso da tabela de sessões.                                      |
+| `rule_hit_count`                       | Contagem de vezes que uma regra foi acionada.                                |
+| `high_availability_status`             | Estado do cluster (Primary, Standby, Sync OK).                               |
+| `uptime`                               | Tempo de atividade contínua do firewall.                                     |
 
 
 
