@@ -10,7 +10,7 @@ Serão estabelecidos os principais componentes da arquitetura, com ênfase sobre
 
 
 ## Rules Engine
-Criad para permitir total desacoplamento dos códigos relacionados aos coletores.
+Criado para permitir total desacoplamento dos códigos associados aos coletores.
 
 <p align="center">
     <img src="rules_engine.png" alt="Diagrama da Arquitetura" width="400"/>
