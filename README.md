@@ -25,7 +25,7 @@ Estas métricas indicam o volume e o tipo de dados que os equipamentos de rede e
 
 <br>
 
-## Monitoramento de BGP
+## Métricas BGP
 
 Contempla as principais métricas que devem ser monitoradas em sessões BGP para garantir visibilidade, estabilidade e operação segura de redes com roteamento dinâmico.
 
@@ -45,6 +45,27 @@ Contempla as principais métricas que devem ser monitoradas em sessões BGP para
 
 <br>
 
+## Métricas de Servidores
+
+Obtém um conjunto essencial de métricas para monitorar servidores físicos ou virtuais. O acompanhamento contínuo dessas métricas é fundamental para garantir a **disponibilidade**, **desempenho** e **segurança** da infraestrutura.
+
+
+| **Métrica**                   | **Descrição**                                                                 |
+|-------------------------------|-------------------------------------------------------------------------------|
+| `% cpu usage`                   | Porcentagem de utilização da CPU (total ou por núcleo)                      |
+| `load average`                | Média de carga do sistema nos últimos 1, 5 e 15 minutos                     |
+| `% memory usage`                | Percentual de memória RAM utilizada                                         |
+| `% swap usage`                  | Uso de memória swap (pode indicar pressão na RAM)                           |
+| `% disk usage`                  | Espaço utilizado em disco (por partição ou volume)                           |
+| `% disk io read`, `% disk io write` | Taxa de leitura/gravação em disco (MB/s ou IOPS)                          |
+| `% filesystem usage`          | Uso do espaço em filesystems                                                       |
+| `% bandwidth`                  | Consumo da largur de banada por interface                                    |
+| `% network errors`            | Erros e perdas nas interfaces de rede                                  |
+| `process_count`               | Número total de processos em execução                                        |
+| `open file descriptors`       | Total de arquivos e conexões abertos — pode causar falhas se atingir limite  |
+| `temperature`                 | Temperatura da CPU, disco ou GPU (se disponível via sensores)               |
+| `fan_speed`, `power_supply_status` | Velocidade das ventoinhas e status da fonte de alimentação            |
+| `service availability`        | Disponibilidade de serviços essenciais (via ping, TCP, HTTP, etc.).         |
 
 
 
