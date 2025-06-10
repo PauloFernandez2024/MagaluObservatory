@@ -22,7 +22,7 @@ Criado para permitir total desacoplamento dos códigos associados aos coletores.
 
 Estas métricas indicam o volume e o tipo de dados que os equipamentos de rede estão processando, assim como as condições de ambiente. São essenciais para avaliar a carga de trabalho e identificar possíveis gargalos.
 
-| Métrica                        | Descrição                                      |
+| Categoria                      | Descrição                                      |
 |--------------------------------|------------------------------------------------|
 | `% bandwidth`                  | Tráfego por interfaces e canais                |
 | `% errors`                     | Taxa de pacotes com erros (ingress e egress)   |
