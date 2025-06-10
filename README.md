@@ -17,6 +17,83 @@ Criado para permitir total desacoplamento dos códigos associados aos coletores.
 </p>
 <br>
 
+## Arquivos de Configuração e Programas de Apoio
+
+Este documento descreve os principais arquivos utilizados na solução de monitoramento baseada em Prometheus, categorizando o papel de cada componente na coleta, cálculo, análise e classificação das métricas de infraestrutura.
+
+---
+
+### `metrics.yaml`
+
+Arquivo cujo conteúdo define as **categorias** e todas as **métricas dependentes**, cujos valores são coletados pelos exporters.
+
+Por exemplo, a categoria `bandwidth` possui como dependentes as seguintes métricas:
+
+* `ifHCInOctets`
+* `ifHCOutOctets`
+* `ifHighSpeed`
+
+Essas métricas são necessárias para calcular o consumo de largura de banda.
+
+---
+
+### `jobs.yaml`
+
+Arquivo de configuração onde são definidos os **jobs do Prometheus**, que especificam as categorias a serem avaliadas e, consequentemente, quais métricas serão coletadas.
+
+Um mesmo conjunto de categorias pode ser utilizado por múltiplos jobs, refletindo cenários onde diferentes dispositivos ou sistemas compartilham o mesmo perfil de métricas.
+
+---
+
+### `formulas.py`
+
+Define como as **categorias** deverão ser calculadas utilizando o conjunto de métricas dependentes definidas em `metrics.yaml`.
+
+O arquivo é dividido em duas seções:
+
+1. **Funções de cálculo** que processam os valores das métricas e retornam o valor da categoria.
+2. **Mapa de associação** entre os nomes das categorias e os nomes das respectivas funções implementadas.
+
+---
+
+### `config.yaml`
+
+Arquivo que define os **thresholds (limiares)** dos valores calculados por categoria, conforme definidos em `formulas.py`.
+
+Cada categoria possui dois limiares:
+
+* `warning`
+* `critical`
+
+Adicionalmente, o campo `score_direction` indica se a categoria possui comportamento **positivo** (maior é melhor) ou **negativo** (maior é pior).
+
+### Exemplo:
+
+Para a categoria `bandwidth`, classificada como score negativo:
+
+* Valor ≥ 90% → `CRITICAL`
+* Valor entre 70% e 89.9% → `WARNING`
+* Valor < 70% → `OK`
+
+---
+
+### `time_window.py`
+
+Arquivo que define as **janelas de tempo** utilizadas para agrupar as métricas a serem analisadas.
+
+Cada entrada do arquivo representa:
+
+* O **nome da janela** (`5m`, `1h`, `24h`, `30d`)
+* O **intervalo de tempo real** em que as métricas serão avaliadas
+
+Por exemplo, a janela `24h` representa a análise das métricas ocorridas nas últimas 24 horas. Essa granularidade permite:
+
+* Avaliações em tempo real (ex: `5m`, `1h`)
+* Análises históricas de médio e longo prazo (ex: `24h`, `30d`)
+
+<br>
+
+
 
 ## 1. Métricas de Rede (Load, Errors, Buffers, Environment)
 
