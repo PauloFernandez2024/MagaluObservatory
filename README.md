@@ -42,7 +42,7 @@ Estas métricas indicam o volume e o tipo de dados que os equipamentos de rede e
 Contempla as principais métricas que devem ser monitoradas em sessões BGP para garantir visibilidade, estabilidade e operação segura de redes com roteamento dinâmico.
 
 
-| **Métrica**                        | **Descrição**                                                             |
+| **Categoria**                     | **Descrição**                                                             |
 |-----------------------------------|---------------------------------------------------------------------------|
 | `Session State`                   | Estado da sessão BGP (Idle, Connect, Active, OpenSent, OpenConfirm, Established) |
 | `% received message`              | Taxas de mensagens BGP recebidas                                         |
@@ -62,7 +62,7 @@ Contempla as principais métricas que devem ser monitoradas em sessões BGP para
 Obtém um conjunto essencial de métricas para monitorar servidores físicos ou virtuais. O acompanhamento contínuo dessas métricas é fundamental para garantir a **disponibilidade**, **desempenho** e **segurança** da infraestrutura.
 
 
-| **Métrica**                   | **Descrição**                                                                 |
+| **Categoria**                   | **Descrição**                                                                 |
 |-------------------------------|-------------------------------------------------------------------------------|
 | `% cpu usage`                   | Porcentagem de utilização da CPU (total ou por núcleo)                      |
 | `load average`                | Média de carga do sistema nos últimos 1, 5 e 15 minutos                     |
@@ -87,7 +87,7 @@ Obtém um conjunto essencial de métricas para monitorar servidores físicos ou 
 Como principais métricas para monitoramento de **firewalls físicos ou virtuais**, essenciais para garantir **segurança**, **desempenho de rede** e **conformidade** com políticas de acesso, detacam-se:
 
 
- **Métrica**                           | **Descrição**                                                                 |
+ **Categoria**                           | **Descrição**                                                                 |
 |----------------------------------------|-------------------------------------------------------------------------------|
 | `cpu_usage`                            | Utilização da CPU — alta carga pode causar latência em inspeções.            |
 | `memory_usage`                         | Utilização da RAM — fundamental para análise de pacotes e sessões ativas.    |
