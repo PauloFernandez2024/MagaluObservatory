@@ -13,7 +13,7 @@ Serão estabelecidos os principais componentes da arquitetura, com ênfase sobre
 Criado para permitir total desacoplamento dos códigos associados aos coletores.
 
 <p align="center">
-    <img src="rules_engine.png" alt="Diagrama da Arquitetura" width="400"/>
+    <img src="rules.png" alt="Diagrama da Arquitetura" width="400"/>
 </p>
 <br>
 
