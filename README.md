@@ -1,7 +1,7 @@
 ## Magalu Cloud - Observability
 Programas e Regras de Observabilidade para Magalu Cloud
 
-Serão estabelecidos os principais componentes da arquitetura, com ênfase sobre Coletores e "Rules Engine" permitindo que fórmulas sejam aplicadas sobre as chamadas Macro-Métricas.
+Serão estabelecidos os principais componentes da arquitetura, com ênfase sobre Coletores e "Rules Engine" permitindo que fórmulas sejam aplicadas sobre as chamadas Macro-Métricasn ou Categorias.
 
 <p align="center">
     <img src="magalucloud.png" alt="Diagrama da Arquitetura" width="700"/>
@@ -19,16 +19,15 @@ Criado para permitir total desacoplamento dos códigos associados aos coletores.
 
 ## Arquivos de Configuração e Programas de Apoio
 
-Este documento descreve os principais arquivos utilizados na solução de monitoramento baseada em Prometheus, categorizando o papel de cada componente na coleta, cálculo, análise e classificação das métricas de infraestrutura.
+Para um melhor entendimento da solução, serão primeiro definidos os principais arquivos e programas de apoio, responsáveis pela coleta, cálculo, análise e classificação das métricas.
+O objetivo destes programas é desacoplar o código dos principais módulos das atividades auxiliares, de tal forma que exclusões ou a adições de novas métricas não alterem os códigos da solução.  
 
 ---
 
 ### `metrics.yaml`
 
-Arquivo cujo conteúdo define as **categorias** e todas as **métricas dependentes**, cujos valores são coletados pelos exporters.
-
+Arquivo cujo conteúdo define as **categorias** e todas as **métricas dependentes**, cujos os valores são coletados pelos exporters.
 Por exemplo, a categoria `bandwidth` possui como dependentes as seguintes métricas:
-
 * `ifHCInOctets`
 * `ifHCOutOctets`
 * `ifHighSpeed`
@@ -58,9 +57,9 @@ O arquivo é dividido em duas seções:
 
 ### `config.yaml`
 
-Arquivo que define os **thresholds (limiares)** dos valores calculados por categoria, conforme definidos em `formulas.py`.
+Arquivo que define os **thresholds** dos valores calculados por categoria, conforme definidos em `formulas.py`.
 
-Cada categoria possui dois limiares:
+Cada categoria possui dois thresholds:
 
 * `warning`
 * `critical`
