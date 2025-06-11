@@ -11,9 +11,11 @@ Serão estabelecidos os principais componentes da arquitetura, com ênfase sobre
 
 ## Rules Engine
 Criado para permitir total desacoplamento dos códigos associados aos coletores.
+<br>
+<br>
 
 <p align="center">
-    <img src="rules_engine.png" alt="Diagrama da Arquitetura" width="400"/>
+    <img src="rules_engine.png" alt="Diagrama da Arquitetura" width="580"/>
 </p>
 <br>
 
@@ -90,9 +92,34 @@ Por exemplo, a janela `24h` representa a análise das métricas ocorridas nas ú
 * Avaliações em tempo real (ex: `5m`, `1h`)
 * Análises históricas de médio e longo prazo (ex: `24h`, `30d`)
 
+---
+
+### `metrics_exporter.py`
+
+Este arquivo exporta os valores de status de saúde e suas estatísticas (média, máximo, mínimo, desvio padrão) para o **PushGateway** do Prometheus.
+
+A função `export_health()` foi estendida para aceitar labels adicionais (`labels_extra`) derivados dinamicamente a partir dos labels Prometheus usados como índice nas métricas (ex: `vrf`, `iface`, `disk`, `core`).
+
+Isso permite granularidade máxima e suporte automático a novos identificadores em tempo de execução.
+
+Exemplo de chamada:
+
+```python
+export_health(
+  device=device,
+  window="1h",
+  metric="node_cpu_seconds_total",
+  status="OK",
+  category="cpu",
+  job="server",
+  stats={...},
+  labels_extra={"core": "0", "cpu": "cpu0"}
+)
+```
+
+Os registradores `Gauge` são recriados dinamicamente conforme os labels extras, e os valores são enviados ao PushGateway usando `job=health_<nome_do_job>`.
+
 <br>
-
-
 
 ## 1. Métricas de Rede (Load, Errors, Buffers, Environment)
 
