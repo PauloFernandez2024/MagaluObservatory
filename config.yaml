@@ -2,24 +2,130 @@ thresholds:
   processor:
     warning: 70
     critical: 90
+
   storage:
     warning: 80
     critical: 90
+
   bandwidth:
     warning: 70
     critical: 90
+
   temperature:
     warning: 75
     critical: 85
+
   indiscards:
-    warning: 1
-    critical: 5
+    warning: 0.5
+    critical: 1
+
   outdiscards:
-    warning: 1
-    critical: 5
+    warning: 0.5
+    critical: 1
+
   inerrors:
-    warning: 1
-    critical: 5
+    warning: 0.5
+    critical: 1
+
   outerrors:
-    warning: 1
+    warning: 0.5
+    critical: 1
+
+
+  bgp:
+    warning: 70
+    critical: 50
+
+
+  cpu_load:
+    warning: 70
+    critical: 90
+
+  cpu_queue:
+    warning: 1.5
     critical: 5
+
+  io_load:
+    warning: 50
+    critical: 80
+
+  io_queue:
+    warning: 0.5
+    critical: 1.5
+
+  memory:
+    warning: 70
+    critical: 90
+
+  memory_swapping:
+    warning: 50
+    critical: 100
+
+  network_packets:
+    warning: 1000
+    critical: 500
+
+  network_errors:
+    warning: 10
+    critical: 100
+
+  filesystem:
+    warning: 70
+    critical: 90
+
+  smartmon_temperature:
+    warning: 55
+    critical: 65
+
+  nvme_temperature:
+    warning: 55
+    critical: 65
+
+
+  network_ethtool:
+    warning: 50000
+    critical: 100000
+
+  tcp_udp:
+    warning: 80
+    critical: 60
+
+  numa:
+    warning: 95
+    critical: 85
+
+  cpu_freq:
+    warning: 70
+    critical: 50
+
+  processes:
+    warning: 70
+    critical: 90
+
+  score_direction:
+    positive:
+      - bgp
+      - numa
+      - cpu_freq
+      - tcp_udp     
+    negative:
+      - processor
+      - storage
+      - temperature
+      - bandwidth
+      - indiscards
+      - outdiscards
+      - inerrors
+      - outerrors
+      - cpu_load
+      - cpu_queue
+      - io_load
+      - io_queue
+      - memory
+      - memory_swapping
+      - network_errors
+      - filesystem
+      - smartmon_temperature
+      - nvme_temperature
+      - processes
+      - network_ethtool

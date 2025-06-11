@@ -1,0 +1,153 @@
+[Unit]
+Description=Metric Discovery Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /caminho/absoluto/discovery.py
+WorkingDirectory=/caminho/absoluto
+Restart=on-failure
+User=your_user
+Environment=PYTHONUNBUFFERED=1
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+
+
+####################################################
+sudo systemctl daemon-reload
+sudo systemctl enable discovery.service
+sudo systemctl start discovery.service
+sudo journalctl -u discovery.service -f
+
+
+####################################################
+Alertas com Prometheus + Alertmanager
+Passo 1: Regra de exemplo
+Exemplo em prometheus.rules.yml:
+
+####################################################
+groups:
+  - name: health.rules
+    rules:
+      - alert: DeviceHealthCritical
+        expr: device_health_status{status="CRITICAL"} == 1
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Health status CRITICAL para {{ $labels.device }}"
+          description: "{{ $labels.metric }} está em status CRITICAL na janela {{ $labels.window }}"
+####################################################
+Passo 2: Adicione à configuração do Prometheus
+rule_files:
+  - "prometheus.rules.yml"
+####################################################
+
+1. Configuração do prometheus.yml para coletar do PushGateway
+No seu prometheus.yml, adicione uma seção scrape_configs como esta:
+
+yaml
+Copiar
+Editar
+scrape_configs:
+  - job_name: 'pushgateway'
+    static_configs:
+      - targets: ['localhost:9091']  # Ajuste se o PushGateway estiver em outro host
+Isso permite que o Prometheus colete as métricas que seu discovery.py envia via push_to_gateway.
+
+✅ 2. Dashboard no Grafana
+Agora que o Prometheus coleta os dados do PushGateway, você pode configurar um dashboard no Grafana. Sugestão de painel:
+
+a. Painel de Status por Dispositivo
+Query (status):
+
+promql
+Copiar
+Editar
+device_health_status
+Transformação (se desejar tabela):
+
+Agrupar por: device, window, category, status
+
+Visualização: Table ou Stat (com contagem por status)
+
+b. Painel de Evolução por Janela de Tempo
+Query (valor médio ao longo do tempo):
+
+promql
+Copiar
+Editar
+avg_over_time(device_health_value_mean[1h])
+Filtro por labels:
+
+job, device, category, window
+
+Visualização: Time series (por exemplo, "network health (mean)")
+
+c. Painel de Dispositivos em Estado CRÍTICO
+Query:
+
+promql
+Copiar
+Editar
+device_health_status{status="CRITICAL"}
+Visualização: Stat com contagem ou lista com device, category
+
+############################################################################
+
+1. Configuração do prometheus.yml
+Adicione a seguinte configuração no seu prometheus.yml:
+
+yaml
+Copiar
+Editar
+scrape_configs:
+  - job_name: 'health_pushgateway'
+    honor_labels: true
+    static_configs:
+      - targets: ['localhost:9091']
+⚠️ Importante: Ajuste localhost:9091 se o PushGateway estiver rodando em outro host ou porta.
+
+✅ 2. Verificar que o export_health() está enviando para o PushGateway
+Você já tem:
+
+python
+Copiar
+Editar
+push_to_gateway("http://localhost:9091", job=f"health_{job}", registry=registry)
+Está correto, e as métricas estão sendo "empurradas" (push) com os rótulos corretos.
+
+✅ 3. Importar no Grafana
+No Grafana:
+
+Vá até o menu lateral → "Dashboards" → "New" → "Add new panel".
+
+Use consultas PromQL como estas:
+
+promql
+Copiar
+Editar
+device_health_status
+Para filtrar por job, status, ou categoria:
+
+promql
+Copiar
+Editar
+device_health_status{job="server", status="CRITICAL"}
+Exemplo com mean:
+
+promql
+Copiar
+Editar
+device_health_value_mean{category="bandwidth", window="5m"}
+✅ 4. Sugestão de Painéis no Grafana
+🔴 Painel de Status Geral: Contagem de device_health_status agrupado por status
+
+📊 Heatmap por Categoria: Média dos valores (mean) por janela e categoria
+
+📈 Série Temporal: device_health_value_mean por dispositivo
+
+############################################################################################
+

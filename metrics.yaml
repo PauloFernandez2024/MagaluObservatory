@@ -21,6 +21,66 @@ outdiscards:
   - ifHCOutUcastPkts
   - ifOutDiscards
 inerrors:
+  - ifHCInBroadcastPkts
+  - ifHCInMulticastPkts
+  - ifHCInUcastPkts
   - ifInErrors
 outerrors:
+  - ifHCOutBroadcastPkts
+  - ifHCOutMulticastPkts
+  - ifHCOutUcastPkts
   - ifOutErrors
+bgp:
+  - bgpPeerState
+  - bgpPeerFsmEstablishedTime
+  - bgpPeerInTotalMessages
+  - bgpPeerOutTotalMessages
+  - bgpPeerInUpdates
+  - bgpPeerOutUpdates
+
+cpu_load:
+  - node_cpu_seconds_total
+cpu_queue:
+  - node_load1
+io_load:
+  - node_cpu_seconds_total
+io_queue:
+  - node_disk_io_time_weighted_seconds_total
+memory:
+  - node_memory_MemFree_bytes
+  - node_memory_Buffers_bytes
+  - node_memory_Cached_bytes
+  - node_memory_MemTotal_bytes
+memory_swapping:
+  - node_vmstat_pswpin
+  - node_vmstat_pswpout
+network_packets:
+  - node_network_receive_packets_total
+  - node_network_transmit_packets_total
+network_errors:
+  - node_network_receive_errs_total
+  - node_network_transmit_errs_total
+filesystem:
+  - node_filesystem_avail_bytes
+  - node_filesystem_size_bytes
+smartmon_temperature:
+  - smartmon_airflow_temperature_cel_value
+nvme_temperature:
+  - nvme_temperature_celsius
+
+network_ethtool:
+  - packets_rx
+  - packets_tx
+tcp_udp:
+  - tcp_orphan
+  - tcp_tw
+  - udp_mem
+numa:
+  - numa_hit
+  - numa_miss
+cpu_freq:
+  - cur_freq_khz
+  - max_freq_khz
+processes:
+  - open_fds
+  - max_fds

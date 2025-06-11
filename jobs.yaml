@@ -1,0 +1,47 @@
+common_network_categories: &network_categories
+  - processor
+  - storage
+  - temperature
+  - bandwidth
+  - indiscards
+  - outdiscards
+  - inerrors
+  - outerrors
+
+common_server_categories: &server_categories
+  - cpu_load
+  - cpu_queue
+  - io_load
+  - io_queue
+  - memory
+  - memory_swapping
+  - network_packets
+  - network_errors
+  - filesystem
+  - smartmon_temperature
+  - nvme_temperature
+
+jobs:
+  - name: network_switch_os10
+    categories: *network_categories
+
+  - name: network_switch_os9
+    categories: *network_categories
+
+  - name: bgp_peer_exporter
+    categories:
+      - bgp
+
+  - name: node_guest
+    categories: *server_categories
+
+  - name: node_host
+    categories: *server_categories
+
+  - name: firewall
+    categories:
+      - network_ethtool
+      - tcp_udp
+      - numa
+      - cpu_freq
+      - processes
