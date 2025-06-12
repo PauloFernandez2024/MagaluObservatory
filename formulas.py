@@ -55,16 +55,16 @@ def bgp(row):
 # Servers session
 #
 def cpu_load(row):
-    return 100 * (1 - (row['result'] / row['time_diff_seconds'])) if row['time_diff_seconds'] > 0 else 0
+    return 100 * (1 - (row['node_cpu_seconds_total'] / row['time_diff_seconds'])) if row['time_diff_seconds'] > 0 else 0
 
 def cpu_queue(row):
-    return row['result']
+    return row['node_load1']
 
 def io_load(row):
-    return 100 * (row['result'] / row['time_diff_seconds']) if row['time_diff_seconds'] > 0 else 0
+    return 100 * (row['node_cpu_seconds_total'] / row['time_diff_seconds']) if row['time_diff_seconds'] > 0 else 0
 
 def io_queue(row):
-    return row['result'] / row['time_diff_seconds'] if row['time_diff_seconds'] > 0 else 0
+    return row['node_disk_io_time_weighted_seconds_total'] / row['time_diff_seconds'] if row['time_diff_seconds'] > 0 else 0
 
 def memory(row):
     used = row['node_memory_MemFree_bytes'] + row['node_memory_Buffers_bytes'] + row['node_memory_Cached_bytes']
@@ -131,6 +131,17 @@ formula = {
     'inerrors': inerrors,
     'outerrors': outerrors,
     'bgp': bgp,
+    'cpu_load': cpu_load,
+    'cpu_queue': cpu_queue,
+    'io_load': io_load,
+    'io_queue': io_queue,
+    'memory': memory,
+    'memory_swapping': memory_swapping,
+    'network_packets': network_packets,
+    'network_errors': network_errors,
+    'filesystem': filesystem,
+    'smartmon_temperature': smartmon_temperature,
+    'nvme_temperature': nvme_temperature
     'network_ethtool': ethtool_load_ratio,
     'tcp_udp': tcp_udp_health,
     'numa': numa_health,
