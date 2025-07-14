@@ -29,7 +29,7 @@ O design da solução proposta visa a desacoplar o código dos módulos das ativ
 ### `metrics.yaml` - Definição de Métricas e Categorias
 
 Arquivo cujo conteúdo define as **categorias** e todas as **métricas dependentes**, cujos os valores são coletados pelos exporters já disponibilizados no Prometheus.
-Inicialmente, estes são os valores configurados voltados à monitoração de Redes, BGP e Servidores:
+Inicialmente, estes são os valores configurados voltados à monitoração de Redes, BGP e Servidores:<br>
 
 
 | Categoria            | Métricas                                                                 |
@@ -54,16 +54,10 @@ Inicialmente, estes são os valores configurados voltados à monitoração de Re
 | smartmon_temperature | smartmon_airflow_temperature_cel_value                                   |
 | nvme_temperature     | nvme_temperature_celsius                                                 |
 
-
-
-
-
-Por exemplo, a categoria `bandwidth` possui como dependentes as seguintes métricas:
+Por exemplo, a categoria `bandwidth` possui como dependentes as seguintes métricas para o cálculo do consumo de largura de banda em qualquer interface:
 * `ifHCInOctets`
 * `ifHCOutOctets`
 * `ifHighSpeed`
-
-Essas métricas são necessárias para calcular o consumo de largura de banda.
 
 ---
 
