@@ -22,11 +22,11 @@ Criado para permitir total desacoplamento dos códigos associados aos coletores.
 ## Arquivos de Configuração e Programas de Apoio
 
 Para um melhor entendimento da solução, serão primeiro definidos os principais arquivos e programas de apoio, responsáveis pela coleta, cálculo, análise e classificação das métricas.
-O objetivo destes programas é desacoplar o código dos principais módulos das atividades auxiliares, de tal forma que exclusões ou a adições de novas métricas não alterem os códigos da solução.  
+O design da solução proposta visa a desacoplar o código dos módulos das atividades de configuração, de tal forma que exclusões, adições de novas métricas ou mesmo o incremento de novas fórmulas evitem alterações destes módulos .  
 
 ---
 
-### `metrics.yaml`
+### `metrics.yaml` - 
 
 Arquivo cujo conteúdo define as **categorias** e todas as **métricas dependentes**, cujos os valores são coletados pelos exporters.
 Por exemplo, a categoria `bandwidth` possui como dependentes as seguintes métricas:
