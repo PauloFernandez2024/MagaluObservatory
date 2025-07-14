@@ -29,12 +29,76 @@ O design da solução proposta visa a desacoplar o código dos módulos das ativ
 ### `metrics.yaml` - Definição de Métricas e Categorias
 
 Arquivo cujo conteúdo define as **categorias** e todas as **métricas dependentes**, cujos os valores são coletados pelos exporters já disponibilizados no Prometheus.
+Inicialmente, estes são os valores configurados voltados à monitoração de Redes, BGP e Servidores:
 
-| Sintoma         | Pré-Tratamento | Pós-Tratamento | Diferença |
-|-----------------|----------------|----------------|-----------|
-| Dor ao dormir   | 3.0            | 1.2            | -1.8      |
-| Fadiga matinal  | 2.5            | 0.9            | -1.6      |
-| Rigidez muscular| 2.0            | 1.0            | -1.0      |
+processor:
+  - hrProcessorLoad
+storage:
+  - hrStorageSize
+  - hrStorageUsed
+  - hrStorageDescr
+temperature:
+  - lmTempSensorsValue
+bandwidth:
+  - ifHCInOctets
+  - ifHCOutOctets
+  - ifHighSpeed
+indiscards:
+  - ifHCInBroadcastPkts
+  - ifHCInMulticastPkts
+  - ifHCInUcastPkts
+  - ifInDiscards
+outdiscards:
+  - ifHCOutBroadcastPkts
+  - ifHCOutMulticastPkts
+  - ifHCOutUcastPkts
+  - ifOutDiscards
+inerrors:
+  - ifHCInBroadcastPkts
+  - ifHCInMulticastPkts
+  - ifHCInUcastPkts
+  - ifInErrors
+outerrors:
+  - ifHCOutBroadcastPkts
+  - ifHCOutMulticastPkts
+  - ifHCOutUcastPkts
+  - ifOutErrors
+
+bgp:
+  - bgpPeerState
+  - bgpPeerFsmEstablishedTime
+  - bgpPeerInTotalMessages
+  - bgpPeerOutTotalMessages
+  - bgpPeerInUpdates
+  - bgpPeerOutUpdates
+
+cpu_load:
+  - node_cpu_seconds_total
+cpu_queue:
+  - node_load1
+io_load:
+  - node_cpu_seconds_total
+io_queue:
+  - node_disk_io_time_weighted_seconds_total
+memory:
+  - node_memory_MemFree_bytes
+  - node_memory_Buffers_bytes
+  - node_memory_Cached_bytes
+  - node_memory_MemTotal_bytes
+memory_swapping:
+  - node_vmstat_pswpin
+  - node_vmstat_pswpout
+network_errors:
+  - node_network_receive_errs_total
+  - node_network_transmit_errs_total
+filesystem:
+  - node_filesystem_avail_bytes
+  - node_filesystem_size_bytes
+smartmon_temperature:
+  - smartmon_airflow_temperature_cel_value
+nvme_temperature:
+  - nvme_temperature_celsius
+
 
 
 
