@@ -236,7 +236,7 @@ Estas granularidades permitirão:
 
 ---
 
-### `metrics_exporter.py`
+### `metrics_exporter.py` - Geração de Dados para Exporters
 
 Este arquivo exporta os valores dos status e estatísticas (média, máximo, mínimo, desvio padrão) das categorias utilizando **PushGateway** do Prometheus.
 
