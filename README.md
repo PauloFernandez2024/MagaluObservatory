@@ -65,9 +65,9 @@ Por exemplo, a categoria `bandwidth` possui como dependentes as seguintes métri
 ### `jobs.yaml`
 
 Arquivo de configuração cujo o objetivo é associar os **jobs do Prometheus**, com os nomes definidos para as categorias presentes no arquivo de configuração **metrics.yaml**.
-Vale ressaltar que em **jobs.yaml**, é possível definir que um mesmo conjunto de categorias possa ser utilizado por múltiplos jobs, refletindo cenários onde diferentes dispositivos ou sistemas compartilham o mesmo perfil de métricas.
+Vale ressaltar que em **jobs.yaml**, é possível definir que um mesmo conjunto de categorias possa ser utilizado por múltiplos jobs, refletindo cenários onde diferentes dispositivos ou sistemas compartilham o mesmo perfil de métricas. Verifique no atual conteúdo, que o mesmo conjunto de categoria **server_categories** foi associado a dois jobs distintos: **node_guest e node_host**
 
-
+```yaml
 common_network_categories: &network_categories
   - processor
   - storage
@@ -106,6 +106,7 @@ jobs:
 
   - name: node_host
     categories: *server_categories
+```
 
 ---
 
