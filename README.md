@@ -112,12 +112,69 @@ jobs:
 
 ### `formulas.py`
 
-Define como as **categorias** deverão ser calculadas utilizando o conjunto de métricas dependentes definidas em `metrics.yaml`.
+Define como as **categorias** deverão ser processadas utilizando o conjunto das métricas definidas em **metrics.yaml**.
 
 O arquivo é dividido em duas seções:
 
 1. **Funções de cálculo** que processam os valores das métricas e retornam o valor da categoria.
 2. **Mapa de associação** entre os nomes das categorias e os nomes das respectivas funções implementadas.
+
+
+########################################################################
+#                  Seção de Definição das Fórmulas                     #
+########################################################################
+def processor(row):
+    """
+    Calcula a média da carga de CPU considerando múltiplos núcleos (ex: hrProcessorLoad por core).
+    Ignora campos não numéricos e valores ausentes (NaN).
+    """
+    return float(row.get("value", 0.0))
+# Adicione aqui outras fórmulas específicas por categoria, se necessário:
+def storage(row):
+    """
+    Percentual de uso da memória física (hrStorage).
+    Espera hrStorageUsed e hrStorageSize no dicionário.
+    """
+    try:
+        used = float(row.get("hrStorageUsed", 0))
+        size = float(row.get("hrStorageSize", 1))  # evita divisão por zero
+        return (used / size) * 100 if size > 0 else 0.0
+    except Exception:
+        return 0.0
+
+def bandwidth(row):
+    return 8 * 100 * (row['ifHCInOctets'] + row['ifHCOutOctets']) / (row['ifHighSpeed'] * BITS_IN_MEGABIT * row['time_diff_seconds']) if row['ifHighSpeed'] > 0 else 0
+
+def indiscards(row):
+    total = row['ifHCInBroadcastPkts'] + row['ifHCInMulticastPkts'] + row['ifHCInUcastPkts']
+    return (100 * row['ifInDiscards']) / total if total > 0 else 0
+
+def outdiscards(row):
+    total = row['ifHCOutBroadcastPkts'] + row['ifHCOutMulticastPkts'] + row['ifHCOutUcastPkts']
+    return (100 * row['ifOutDiscards']) / total if total > 0 else 0
+
+def inerrors(row):
+    total = row['ifHCInBroadcastPkts'] + row['ifHCInMulticastPkts'] + row['ifHCInUcastPkts']
+    return (100 * row['ifInErrors']) / total if total > 0 else 0
+
+def outerrors(row):
+    total = row['ifHCOutBroadcastPkts'] + row['ifHCOutMulticastPkts'] + row['ifHCOutUcastPkts']
+    return (100 * row['ifOutErrors']) / total if total > 0 else 0
+
+
+########################################################################
+#                  Seção de Definição das Funções                      #
+########################################################################
+formula = {
+    'storage': storage,
+    'bandwidth': bandwidth,
+    'indiscards': indiscards,
+    'outdiscards': outdiscards,
+    'inerrors': inerrors,
+    'outerrors': outerrors
+}
+
+
 
 ---
 
