@@ -31,73 +31,28 @@ O design da solução proposta visa a desacoplar o código dos módulos das ativ
 Arquivo cujo conteúdo define as **categorias** e todas as **métricas dependentes**, cujos os valores são coletados pelos exporters já disponibilizados no Prometheus.
 Inicialmente, estes são os valores configurados voltados à monitoração de Redes, BGP e Servidores:
 
-processor:
-  - hrProcessorLoad
-storage:
-  - hrStorageSize
-  - hrStorageUsed
-  - hrStorageDescr
-temperature:
-  - lmTempSensorsValue
-bandwidth:
-  - ifHCInOctets
-  - ifHCOutOctets
-  - ifHighSpeed
-indiscards:
-  - ifHCInBroadcastPkts
-  - ifHCInMulticastPkts
-  - ifHCInUcastPkts
-  - ifInDiscards
-outdiscards:
-  - ifHCOutBroadcastPkts
-  - ifHCOutMulticastPkts
-  - ifHCOutUcastPkts
-  - ifOutDiscards
-inerrors:
-  - ifHCInBroadcastPkts
-  - ifHCInMulticastPkts
-  - ifHCInUcastPkts
-  - ifInErrors
-outerrors:
-  - ifHCOutBroadcastPkts
-  - ifHCOutMulticastPkts
-  - ifHCOutUcastPkts
-  - ifOutErrors
+| Categoria            | Métricas                                                                 |
+|----------------------|--------------------------------------------------------------------------|
+| processor            | hrProcessorLoad                                                          |
+| storage              | hrStorageSize<br>hrStorageUsed<br>hrStorageDescr                         |
+| temperature          | lmTempSensorsValue                                                       |
+| bandwidth            | ifHCInOctets<br>ifHCOutOctets<br>ifHighSpeed                             |
+| indiscards           | ifHCInBroadcastPkts<br>ifHCInMulticastPkts<br>ifHCInUcastPkts<br>ifInDiscards |
+| outdiscards          | ifHCOutBroadcastPkts<br>ifHCOutMulticastPkts<br>ifHCOutUcastPkts<br>ifOutDiscards |
+| inerrors             | ifHCInBroadcastPkts<br>ifHCInMulticastPkts<br>ifHCInUcastPkts<br>ifInErrors |
+| outerrors            | ifHCOutBroadcastPkts<br>ifHCOutMulticastPkts<br>ifHCOutUcastPkts<br>ifOutErrors |
+| bgp                  | bgpPeerState<br>bgpPeerFsmEstablishedTime<br>bgpPeerInTotalMessages<br>bgpPeerOutTotalMessages<br>bgpPeerInUpdates<br>bgpPeerOutUpdates |
+| cpu_load             | node_cpu_seconds_total                                                   |
+| cpu_queue            | node_load1                                                               |
+| io_load              | node_cpu_seconds_total                                                   |
+| io_queue             | node_disk_io_time_weighted_seconds_total                                 |
+| memory               | node_memory_MemFree_bytes<br>node_memory_Buffers_bytes<br>node_memory_Cached_bytes<br>node_memory_MemTotal_bytes |
+| memory_swapping      | node_vmstat_pswpin<br>node_vmstat_pswpout                                |
+| network_errors       | node_network_receive_errs_total<br>node_network_transmit_errs_total      |
+| filesystem           | node_filesystem_avail_bytes<br>node_filesystem_size_bytes                |
+| smartmon_temperature | smartmon_airflow_temperature_cel_value                                   |
+| nvme_temperature     | nvme_temperature_celsius                                                 |
 
-bgp:
-  - bgpPeerState
-  - bgpPeerFsmEstablishedTime
-  - bgpPeerInTotalMessages
-  - bgpPeerOutTotalMessages
-  - bgpPeerInUpdates
-  - bgpPeerOutUpdates
-
-cpu_load:
-  - node_cpu_seconds_total
-cpu_queue:
-  - node_load1
-io_load:
-  - node_cpu_seconds_total
-io_queue:
-  - node_disk_io_time_weighted_seconds_total
-memory:
-  - node_memory_MemFree_bytes
-  - node_memory_Buffers_bytes
-  - node_memory_Cached_bytes
-  - node_memory_MemTotal_bytes
-memory_swapping:
-  - node_vmstat_pswpin
-  - node_vmstat_pswpout
-network_errors:
-  - node_network_receive_errs_total
-  - node_network_transmit_errs_total
-filesystem:
-  - node_filesystem_avail_bytes
-  - node_filesystem_size_bytes
-smartmon_temperature:
-  - smartmon_airflow_temperature_cel_value
-nvme_temperature:
-  - nvme_temperature_celsius
 
 
 
