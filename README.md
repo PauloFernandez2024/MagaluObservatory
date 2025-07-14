@@ -31,6 +31,7 @@ O design da solução proposta visa a desacoplar o código dos módulos das ativ
 Arquivo cujo conteúdo define as **categorias** e todas as **métricas dependentes**, cujos os valores são coletados pelos exporters já disponibilizados no Prometheus.
 Inicialmente, estes são os valores configurados voltados à monitoração de Redes, BGP e Servidores:
 
+
 | Categoria            | Métricas                                                                 |
 |----------------------|--------------------------------------------------------------------------|
 | processor            | hrProcessorLoad                                                          |
