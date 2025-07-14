@@ -9,6 +9,10 @@ Serão estabelecidos os principais componentes da arquitetura, com ênfase sobre
 <br>
 
 
+## Objetivos
+A solução tem por objetivo coletar e agrupar métricas por segmentos funcionais (redes, bgp, servidores, firewalls ...) da base de dados Prometheus,  analisar e apontar possíveis problemas funcionais ou de contenção do ambiente, e retornando o resultado final da análise para o mesmo Prometheus.  
+
+
 ## Rules Engine
 Criado para permitir total desacoplamento dos códigos associados aos coletores.
 <br>
