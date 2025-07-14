@@ -238,7 +238,7 @@ Estas granularidades permitirão:
 
 ### `metrics_exporter.py`
 
-Este arquivo exporta os valores de status de saúde e suas estatísticas (média, máximo, mínimo, desvio padrão) para o **PushGateway** do Prometheus.
+Este arquivo exporta os valores dos status e estatísticas (média, máximo, mínimo, desvio padrão) das categorias utilizando **PushGateway** do Prometheus.
 
 A função `export_health()` foi estendida para aceitar labels adicionais (`labels_extra`) derivados dinamicamente a partir dos labels Prometheus usados como índice nas métricas (ex: `vrf`, `iface`, `disk`, `core`).
 
