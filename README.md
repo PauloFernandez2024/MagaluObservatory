@@ -64,9 +64,48 @@ Por exemplo, a categoria `bandwidth` possui como dependentes as seguintes métri
 
 ### `jobs.yaml`
 
-Arquivo de configuração onde são definidos os **jobs do Prometheus**, que especificam as categorias a serem avaliadas e, consequentemente, quais métricas serão coletadas.
+Arquivo de configuração cujo o objetivo é associar os **jobs do Prometheus**, com os nomes definidos para as categorias presentes no arquivo de configuração **metrics.yaml**.
+Vale ressaltar que em **jobs.yaml**, é possível definir que um mesmo conjunto de categorias possa ser utilizado por múltiplos jobs, refletindo cenários onde diferentes dispositivos ou sistemas compartilham o mesmo perfil de métricas.
 
-Um mesmo conjunto de categorias pode ser utilizado por múltiplos jobs, refletindo cenários onde diferentes dispositivos ou sistemas compartilham o mesmo perfil de métricas.
+
+common_network_categories: &network_categories
+  - processor
+  - storage
+  - temperature
+  - bandwidth
+  - indiscards
+  - outdiscards
+  - inerrors
+  - outerrors
+
+common_server_categories: &server_categories
+  - cpu_load
+  - cpu_queue
+  - io_load
+  - io_queue
+  - memory
+  - memory_swapping
+  - network_errors
+  - filesystem
+  - smartmon_temperature
+  - nvme_temperature
+
+jobs:
+  - name: network_switch_os10
+    categories: *network_categories
+
+  - name: network_switch_cumulus5
+    categories: *network_categories
+
+  - name: network_switch_os10_bgp
+    categories:
+      - bgp
+
+  - name: node_guest
+    categories: *server_categories
+
+  - name: node_host
+    categories: *server_categories
 
 ---
 
