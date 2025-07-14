@@ -26,9 +26,18 @@ O design da solução proposta visa a desacoplar o código dos módulos das ativ
 
 ---
 
-### `metrics.yaml` - 
+### `metrics.yaml` - Definição de Métricas e Categorias
 
-Arquivo cujo conteúdo define as **categorias** e todas as **métricas dependentes**, cujos os valores são coletados pelos exporters.
+Arquivo cujo conteúdo define as **categorias** e todas as **métricas dependentes**, cujos os valores são coletados pelos exporters já disponibilizados no Prometheus.
+
+| Sintoma         | Pré-Tratamento | Pós-Tratamento | Diferença |
+|-----------------|----------------|----------------|-----------|
+| Dor ao dormir   | 3.0            | 1.2            | -1.8      |
+| Fadiga matinal  | 2.5            | 0.9            | -1.6      |
+| Rigidez muscular| 2.0            | 1.0            | -1.0      |
+
+
+
 Por exemplo, a categoria `bandwidth` possui como dependentes as seguintes métricas:
 * `ifHCInOctets`
 * `ifHCOutOctets`
