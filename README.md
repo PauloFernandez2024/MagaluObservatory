@@ -1,7 +1,7 @@
 ## Magalu Cloud - Observability
 Programas e Regras de Observabilidade para Magalu Cloud
 
-Serão estabelecidos os principais componentes da arquitetura, com ênfase sobre Coletores e "Rules Engine" permitindo que fórmulas sejam aplicadas sobre as chamadas Macro-Métricasn ou Categorias.
+Serão estabelecidos os principais componentes da arquitetura, com ênfase sobre Coletores e "Rules Engine" permitindo que fórmulas sejam aplicadas sobre as chamadas Macro-Métricas ou Categorias.
 
 <p align="center">
     <img src="magalucloud.png" alt="Diagrama da Arquitetura" width="700"/>
