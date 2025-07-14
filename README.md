@@ -110,7 +110,7 @@ jobs:
 
 ---
 
-### `formulas.py`
+### `formulas.py` - Aplicação das Fórmulas
 
 Define como as **categorias** deverão ser processadas utilizando o conjunto das métricas definidas em **metrics.yaml**.
 
@@ -180,7 +180,7 @@ formula = {
 
 ---
 
-### `config.yaml`
+### `config.yaml` - Validação dos Thresholds
 
 Arquivo que define os **thresholds** para os valores calculados por categoria, conforme definidos em `formulas.py`.
 
