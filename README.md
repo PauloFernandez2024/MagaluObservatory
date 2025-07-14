@@ -210,15 +210,27 @@ onde,
 
 ### `time_window.py`
 
-Arquivo que define as **janelas de tempo** utilizadas para agrupar as métricas a serem analisadas.
+Arquivo que define as **janelas de tempo** utilizadas para coleta e cálculo das métricas: 
 
-Cada entrada do arquivo representa:
+O atual conteúdo do programa ´resumido com as seguintes linhas:
+
+```python
+from datetime import timedelta
+
+time_windows = {
+    "5m": timedelta(minutes=5),
+    "1h": timedelta(hours=1),
+    "24h": timedelta(hours=24),
+    "30d": timedelta(days=30),
+}
+```
+
+Cada entrada no dicionário **time_window** dfine:
 
 * O **nome da janela** (`5m`, `1h`, `24h`, `30d`)
 * O **intervalo de tempo real** em que as métricas serão avaliadas
 
-Por exemplo, a janela `24h` representa a análise das métricas ocorridas nas últimas 24 horas. Essa granularidade permite:
-
+Estas granularidades permitirão:
 * Avaliações em tempo real (ex: `5m`, `1h`)
 * Análises históricas de médio e longo prazo (ex: `24h`, `30d`)
 
