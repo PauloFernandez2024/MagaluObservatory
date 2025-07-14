@@ -116,10 +116,12 @@ Define como as **categorias** deverão ser processadas utilizando o conjunto das
 
 O arquivo é dividido em duas seções:
 
-1. **Funções de cálculo** que processam os valores das métricas e retornam o valor da categoria.
-2. **Mapa de associação** entre os nomes das categorias e os nomes das respectivas funções implementadas.
+1. **Funções de cálculo** onde são expostas as fórmulas com referência às metricas, utilizadas no cálculo de cada categoria de interesse
+2. **Mapa de associação** onde são associados os nomes das categorias e os nomes das respectivas funções onde os cálculos serão realizados
 
+Segue um trecho do código em **formulas.py** onde as categorias de Rede são calculadas. Vale ressaltar que para a inclusão de um nova categoria e sua função corrspondente, as métricas utilizadas na fórmula deverão ser antes declaradas no arquivo de configuração **metrics.yaml**.
 
+```python
 ########################################################################
 #                  Seção de Definição das Fórmulas                     #
 ########################################################################
@@ -129,6 +131,7 @@ def processor(row):
     Ignora campos não numéricos e valores ausentes (NaN).
     """
     return float(row.get("value", 0.0))
+
 # Adicione aqui outras fórmulas específicas por categoria, se necessário:
 def storage(row):
     """
@@ -173,14 +176,13 @@ formula = {
     'inerrors': inerrors,
     'outerrors': outerrors
 }
-
-
+```
 
 ---
 
 ### `config.yaml`
 
-Arquivo que define os **thresholds** dos valores calculados por categoria, conforme definidos em `formulas.py`.
+Arquivo que define os **thresholds** para os valores calculados por categoria, conforme definidos em `formulas.py`.
 
 Cada categoria possui dois thresholds:
 
@@ -189,10 +191,17 @@ Cada categoria possui dois thresholds:
 
 Adicionalmente, o campo `score_direction` indica se a categoria possui comportamento **positivo** (maior é melhor) ou **negativo** (maior é pior).
 
+Utilize o mesmo nome de categoria definido nos demais arquivos de configuração, vistos até aqui. 
+
 ### Exemplo:
 
-Para a categoria `bandwidth`, classificada como score negativo:
-
+Para a categoria `bandwidth`, classificada como score negativo, foram definidos os seguintes thresholds
+```yaml
+  bandwidth:
+    warning: 70
+    critical: 90
+```
+onde, 
 * Valor ≥ 90% → `CRITICAL`
 * Valor entre 70% e 89.9% → `WARNING`
 * Valor < 70% → `OK`
