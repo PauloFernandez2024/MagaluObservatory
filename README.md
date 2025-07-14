@@ -265,18 +265,18 @@ Os registradores `Gauge` são recriados dinamicamente conforme os labels extras,
 
 ### `discovery.py`
 
-Script principal responsável por orquestrar o processo de coleta, análise e exportação dos dados de saúde por categoria e por janela de tempo.
+Script principal responsável por orquestrar o processo de coleta, análise e exportação dos dados relacionados aos status e estatísticas por categoria na janela de tempo definida.
 
 #### Principais responsabilidades:
 
 * Carrega arquivos de configuração: `jobs.yaml`, `metrics.yaml`, `config.yaml`, `time_window.py`.
-* Para cada job definido, consulta o Prometheus para descobrir as instâncias disponíveis (`instance` labels).
+* Para cada job definido, consulta o Prometheus e estabelece as instâncias disponíveis (`instance` labels).
 * Para cada categoria atribuída ao job, coleta as métricas associadas dentro da janela de tempo definida.
 * Aplica a função de cálculo correspondente à categoria, conforme definido em `formulas.py`.
 * Classifica o valor como `OK`, `WARNING` ou `CRITICAL` de acordo com os thresholds.
 * Exporta os resultados agregados para o PushGateway utilizando `metrics_exporter.py`.
 
-O script também mantém um controle local para evitar reprocessamento dentro do mesmo intervalo (`window_exec_state.json`).
+O script mantém um controle local para evitar reprocessamento dentro do mesmo intervalo (`window_exec_state.json`).
 
 Além disso, o `discovery.py` extrai automaticamente labels do índice das séries Prometheus, permitindo exportar métricas com granularidade por `vrf`, `iface`, `disk`, `core` e outras dimensões.
 
@@ -284,7 +284,7 @@ Além disso, o `discovery.py` extrai automaticamente labels do índice das séri
 
 ## 1. Métricas de Rede (Load, Errors, Buffers, Environment)
 
-Estas métricas indicam o volume e o tipo de dados que os equipamentos de rede estão processando, assim como as condições de ambiente. São essenciais para avaliar a carga de trabalho e identificar possíveis gargalos.
+Métricas essenciais para avaliar a carga de trabalho e identificar possíveis contmções sobre os equipamentos de rede.
 
 | Categoria                      | Descrição                                      |
 |--------------------------------|------------------------------------------------|
